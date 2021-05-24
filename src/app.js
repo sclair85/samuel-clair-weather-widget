@@ -12,33 +12,37 @@ const getWeatherData = async (url) => {
 const renderForecast = async () => {
   forecast.innerHTML = '';
   const data = await getWeatherData(urlForecast);
-  for(i = 1; i < data.list.length; i++) {
-    const date = new Date(data.list[i]['dt_txt']);
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    console.log(date.toLocaleTimeString('en-US'));
-    console.log(date.toLocaleDateString('en-US'));
-    if (date.toLocaleTimeString('en-US') === `12:00:00 PM`) {
-      data.list.forEach(forecastData => {
-        forecast.insertAdjacentHTML('beforeend', 
+  const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  for (let i = 0; i < data.list.length; i++) {
+    if (i % 8 === 0) {
+      const forecastData = data.list[i];
+      const date = new Date(forecastData['dt_txt']); 
+      const dayId = date.getDay(); 
+   
+      forecast.insertAdjacentHTML('beforeend', 
         `<div class="day">
-        <h3>${days[date.getDay()]}</h3>
+        <h3>${daysOfTheWeek[dayId]}</h3>
         <img src="http://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png" />
         <div class="description">${forecastData.weather[0].description}</div>
-        <div class="temp">
-        <span class="high">${
-          parseInt(forecastData.main['temp_max'])}℃</span>/<span class="low">${parseInt(forecastData.main['temp_min'])}℃</span>
+          <div class="temp">
+            <span class="high">
+              ${parseInt(forecastData.main['temp_max'])}℃
+            </span>
+            /
+            <span class="low">${parseInt(forecastData.main['temp_min'])}℃</span>
           </div>
-          </div>`);
-      });
+        </div>`
+      );
     }
-  };
+  }
 }
 
 const renderCurrentWeather = async() => {
   currentConditions.innerHTML = '';
   const data = await getWeatherData(urlCurrentWeather);
   data.weather.forEach(weatherData => {
-    currentConditions.insertAdjacentHTML('beforeend', 
+    currentConditions.insertAdjacentHTML('beforebegin', 
     `
     <div class="current-conditions">
       <h2>Current Conditions</h2>
