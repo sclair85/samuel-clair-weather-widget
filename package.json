@@ -1,0 +1,22 @@
+{
+  "name": "samuel-clair-weather-widget",
+  "version": "1.0.0",
+  "description": "Weather Widget",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sclair85/samuel-clair-weather-widget.git"
+  },
+  "author": "Samuel Clair",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sclair85/samuel-clair-weather-widget/issues"
+  },
+  "homepage": "https://github.com/sclair85/samuel-clair-weather-widget#readme",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
