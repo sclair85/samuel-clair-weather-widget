@@ -58,14 +58,12 @@ const renderCurrentWeather = async() => {
 
 getWeatherData(urlCurrentWeather)
 .then((data) => {
-  console.log(data);
   renderCurrentWeather(data);
 })
 .catch(err => console.log(err));
 
 getWeatherData(urlForecast)
 .then((data) => {
-  console.log(data);
   renderForecast(data);
 })
 .catch(err => console.log(err));
